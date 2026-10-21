@@ -6,57 +6,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar Menu</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+   
+ <style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            padding: 16px 10px;
-            color: #222;
-            background: #fff;
-        }
+    body {
+        margin: 0;
+        padding: 16px 10px;
+        color: #222;
+        background: #fff;
+    }
 
-        h2 {
-            margin: 0 0 16px;
-            font-size: 22px;
-        }
+    h2 {
+        margin: 0 0 16px;
+        font-size: 22px;
+    }
 
-        .menu,
-        .menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            line-height: 1.5;
-        }
+    .acc-menu,
+    .acc-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        line-height: 1.5;
+    }
 
-        .menu li {
-            position: relative;
-        }
+    .acc-menu li {
+        position: relative;
+    }
 
-        .menu li a {
-            display: block;
-            padding: 8px 10px;
-            color: #222;
-            text-decoration: none;
-            overflow-wrap: anywhere;
-        }
+    .acc-menu li a {
+        display: block;
+        padding: 8px 10px;
+        color: #222;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+    }
 
-        .menu li a:hover {
-            color: #d00;
-            background: #f7f7f7;
-        }
+    .acc-menu li a:hover {
+        color: #d00;
+        background: #f7f7f7;
+    }
 
-        .menu > li > a {
-            font-weight: bold;
-        }
+    .acc-menu > li > a {
+        padding-left: 34px;
+        font-weight: bold;
+    }
 
-        .menu > li > ul > li a {
-            padding-left: 30px;
+    .acc-menu input[type="checkbox"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+    }
+
+    .acc-menu label {
+        position: absolute;
+        top: 4px;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 32px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .acc-menu label::before {
+        content: "+";
+    }
+
+    .acc-menu input:checked + label::before {
+        content: "\2212";
+    }
+
+    .acc-menu input:focus-visible + label {
+        outline: 2px solid #1677ff;
+        outline-offset: 2px;
+    }
+
+    /* Collapse every submenu by default */
+    .acc-menu > li > ul {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    /* Expand the submenu belonging to the checked checkbox */
+    .acc-menu > li > input[type="checkbox"]:checked ~ ul {
+        max-height: 500px;
+    }
+
+    .acc-menu > li > ul > li > a {
+        padding-left: 34px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .acc-menu > li > ul {
+            transition: none;
         }
-    </style>
+    }
+</style>
+
 </head>
 
 <body>
